@@ -14,11 +14,6 @@ public class ProduitController {
 
     private final ProduitService produitService;
 
-    @GetMapping("/hello")
-    public String sayHello(){
-        return "Hello";
-    }
-
     @GetMapping("/all")
     public List<Produit> getAllProduits(){
         return produitService.getAllProduits();
@@ -27,6 +22,21 @@ public class ProduitController {
     @PostMapping
     public Produit createProduit(@RequestBody Produit produit){
         return produitService.createProduit(produit);
+    }
+
+    @GetMapping("{id}")
+    public Produit getProduitId(@PathVariable long id){
+        return produitService.getProduitById(id);
+    }
+
+    @DeleteMapping("{id}")
+    public String deleteProduitById(@PathVariable long id){
+        return produitService.deleteProduitById(id);
+    }
+
+    @PutMapping("{id}")
+    public Produit editProduit(@PathVariable long id,@RequestBody Produit produit){
+        return produitService.editProduit(id,produit);
     }
 
 }
