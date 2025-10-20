@@ -1,5 +1,6 @@
 package com.produit.produit.service;
 
+import com.produit.produit.exceptions.ProduitNotFoundException;
 import com.produit.produit.model.Produit;
 import com.produit.produit.repository.ProduitRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ public class ProduitService {
         Optional<Produit> optionalProduit = produitRepository.findById(id);
 
         if(optionalProduit.isEmpty()){
-            throw new RuntimeException(("Désolé produit inexistant"));
+            throw new ProduitNotFoundException("Désolé produit inexistant");
         }
         return optionalProduit.get();
 
